@@ -4,6 +4,7 @@ import com.uditagarwal.model.Command;
 import com.uditagarwal.model.ParkingLot;
 import com.uditagarwal.model.parking.strategy.NaturalOrderingParkingStrategy;
 import com.uditagarwal.service.ParkingLotService;
+import com.uditagarwal.validator.IntegerValidator;
 import java.util.List;
 
 public class CreateParkingLotCommandExecutor extends CommandExecutor {
@@ -19,13 +20,7 @@ public class CreateParkingLotCommandExecutor extends CommandExecutor {
     if (params.size() != 1) {
       return false;
     }
-
-    try {
-      Integer.parseInt(params.get(0));
-      return true;
-    } catch (NumberFormatException exception) {
-      return false;
-    }
+    return IntegerValidator.isInteger(params.get(0));
   }
 
   @Override

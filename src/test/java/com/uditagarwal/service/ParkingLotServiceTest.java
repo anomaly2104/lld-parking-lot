@@ -54,4 +54,17 @@ public class ParkingLotServiceTest {
     final Car testCar = new Car("test-car-no", "white");
     parkingLotService.park(testCar);
   }
+
+  @Test
+  public void testFreeingSlot() {
+    parkingLotService.makeSlotFree(1);
+    verify(parkingStrategy).addSlot(1);
+    verify(parkingLot).makeSlotFree(1);
+  }
+
+  @Test(expected = ParkingLotException.class)
+  public void testFreeingSlotWithoutCreatingParkingLot() {
+    final ParkingLotService parkingLotService = new ParkingLotService();
+    parkingLotService.makeSlotFree(1);
+  }
 }

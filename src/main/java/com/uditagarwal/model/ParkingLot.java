@@ -1,5 +1,6 @@
 package com.uditagarwal.model;
 
+import com.uditagarwal.exception.InvalidSlotException;
 import com.uditagarwal.exception.ParkingLotException;
 import com.uditagarwal.exception.SlotAlreadyOccupiedException;
 import java.util.HashMap;
@@ -23,6 +24,9 @@ public class ParkingLot {
   }
 
   private Slot getSlot(Integer slotNumber) {
+    if (slotNumber > getCapacity() || slotNumber <= 0) {
+      throw new InvalidSlotException();
+    }
     if (!this.slots.containsKey(slotNumber)) {
       this.slots.put(slotNumber, new Slot(slotNumber));
     }
@@ -35,6 +39,12 @@ public class ParkingLot {
       throw new SlotAlreadyOccupiedException();
     }
     slot.assignCar(car);
+    return slot;
+  }
+
+  public Slot makeSlotFree(final Integer slotNumber) {
+    final Slot slot = getSlot(slotNumber);
+    slot.unassignCar();
     return slot;
   }
 }
