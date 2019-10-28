@@ -5,6 +5,7 @@ import com.uditagarwal.model.Command;
 import com.uditagarwal.service.ParkingLotService;
 
 public class ParkCommandExecutor extends CommandExecutor {
+  public static String COMMAND_NAME = "park";
 
   public ParkCommandExecutor(ParkingLotService parkingLotService) {
     super(parkingLotService);

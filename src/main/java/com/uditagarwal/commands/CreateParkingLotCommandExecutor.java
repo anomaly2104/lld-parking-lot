@@ -7,6 +7,7 @@ import com.uditagarwal.service.ParkingLotService;
 import java.util.List;
 
 public class CreateParkingLotCommandExecutor extends CommandExecutor {
+  public static String COMMAND_NAME = "create_parking_lot";
 
   public CreateParkingLotCommandExecutor(final ParkingLotService parkingLotService) {
     super(parkingLotService);

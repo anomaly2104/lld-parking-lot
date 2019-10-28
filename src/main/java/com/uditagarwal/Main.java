@@ -1,7 +1,5 @@
 package com.uditagarwal;
 
-import static com.uditagarwal.commands.CommandConstants.EXIT;
-
 import com.uditagarwal.commands.CommandExecutor;
 import com.uditagarwal.commands.CommandExecutorFactory;
 import com.uditagarwal.exception.InvalidCommandException;
@@ -16,6 +14,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
+  private static String EXIT = "exit";
+
   public static void main(String[] args) throws IOException {
     OutputPrinter.welcome();
     final ParkingLotService parkingLotService = new ParkingLotService();
