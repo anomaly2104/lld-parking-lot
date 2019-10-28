@@ -2,6 +2,7 @@ package com.uditagarwal.model.parking.strategy;
 
 import static org.junit.Assert.assertEquals;
 
+import com.uditagarwal.exception.NoFreeSlotAvailableException;
 import org.junit.Test;
 
 public class NaturalOrderingParkingStrategyTest {
@@ -20,5 +21,10 @@ public class NaturalOrderingParkingStrategyTest {
     assertEquals((Integer)3, naturalOrderingParkingStrategy.getNextSlot());
     naturalOrderingParkingStrategy.addSlot(2);
     assertEquals((Integer)2, naturalOrderingParkingStrategy.getNextSlot());
+  }
+
+  @Test(expected = NoFreeSlotAvailableException.class)
+  public void testFullParkingStrategy() {
+    Integer nextSlot = naturalOrderingParkingStrategy.getNextSlot();
   }
 }
