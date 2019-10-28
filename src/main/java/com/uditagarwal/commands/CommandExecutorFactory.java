@@ -1,6 +1,7 @@
 package com.uditagarwal.commands;
 
 import static com.uditagarwal.commands.CommandConstants.CREATE_PARKING_LOT;
+import static com.uditagarwal.commands.CommandConstants.PARK;
 
 import com.uditagarwal.exception.InvalidCommandException;
 import com.uditagarwal.model.Command;
@@ -16,6 +17,7 @@ public class CommandExecutorFactory {
 
   public CommandExecutorFactory(final ParkingLotService parkingLotService) {
     commands.put(CREATE_PARKING_LOT, new CreateParkingLotCommandExecutor(parkingLotService));
+    commands.put(PARK, new ParkCommandExecutor(parkingLotService));
   }
 
   public CommandExecutor getCommandExecutor(final Command command) {

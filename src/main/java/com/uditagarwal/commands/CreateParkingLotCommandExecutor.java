@@ -1,6 +1,7 @@
 package com.uditagarwal.commands;
 
 import com.uditagarwal.model.Command;
+import com.uditagarwal.model.ParkingLot;
 import com.uditagarwal.model.parking.strategy.NaturalOrderingParkingStrategy;
 import com.uditagarwal.service.ParkingLotService;
 import java.util.List;
@@ -29,6 +30,6 @@ public class CreateParkingLotCommandExecutor extends CommandExecutor {
   @Override
   public void execute(final Command command) {
     final int parkingLotCapacity = Integer.parseInt(command.getParams().get(0));
-    parkingLotService.createParkingLot(parkingLotCapacity, new NaturalOrderingParkingStrategy());
+    parkingLotService.createParkingLot(new ParkingLot(parkingLotCapacity), new NaturalOrderingParkingStrategy());
   }
 }
