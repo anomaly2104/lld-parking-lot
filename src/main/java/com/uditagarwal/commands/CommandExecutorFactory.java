@@ -4,6 +4,7 @@ import static com.uditagarwal.commands.CommandConstants.CREATE_PARKING_LOT;
 
 import com.uditagarwal.exception.InvalidCommandException;
 import com.uditagarwal.model.Command;
+import com.uditagarwal.service.ParkingLotService;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,8 +14,8 @@ import java.util.Map;
 public class CommandExecutorFactory {
   Map<String, CommandExecutor> commands = new HashMap<String, CommandExecutor>();
 
-  public CommandExecutorFactory() {
-    commands.put(CREATE_PARKING_LOT, new CreateParkingLotCommandExecutor());
+  public CommandExecutorFactory(final ParkingLotService parkingLotService) {
+    commands.put(CREATE_PARKING_LOT, new CreateParkingLotCommandExecutor(parkingLotService));
   }
 
   public CommandExecutor getCommandExecutor(final Command command) {

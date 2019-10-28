@@ -7,6 +7,7 @@ import com.uditagarwal.commands.CommandExecutorFactory;
 import com.uditagarwal.exception.InvalidCommandException;
 import com.uditagarwal.exception.InvalidModeException;
 import com.uditagarwal.model.Command;
+import com.uditagarwal.service.ParkingLotService;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,7 +18,9 @@ import java.io.InputStreamReader;
 public class Main {
   public static void main(String[] args) throws IOException {
     OutputPrinter.welcome();
-    final CommandExecutorFactory commandExecutorFactory = new CommandExecutorFactory();
+    final ParkingLotService parkingLotService = new ParkingLotService();
+    final CommandExecutorFactory commandExecutorFactory =
+        new CommandExecutorFactory(parkingLotService);
 
     if (isInteractiveMode(args)) {
       OutputPrinter.usage();
@@ -53,8 +56,8 @@ public class Main {
     }
   }
 
-  private static void processCommand(CommandExecutorFactory commandExecutorFactory,
-      Command command) {
+  private static void processCommand(
+      CommandExecutorFactory commandExecutorFactory, Command command) {
     final CommandExecutor commandExecutor = commandExecutorFactory.getCommandExecutor(command);
     if (commandExecutor.validate(command)) {
       commandExecutor.execute(command);
