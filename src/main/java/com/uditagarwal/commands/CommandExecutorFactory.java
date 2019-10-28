@@ -8,7 +8,7 @@ import java.util.Map;
 
 /** Factory to get correct {@link CommandExecutor} from a given command. */
 public class CommandExecutorFactory {
-  Map<String, CommandExecutor> commands = new HashMap<String, CommandExecutor>();
+  private Map<String, CommandExecutor> commands = new HashMap<>();
 
   public CommandExecutorFactory(final ParkingLotService parkingLotService) {
     commands.put(
@@ -16,10 +16,11 @@ public class CommandExecutorFactory {
         new CreateParkingLotCommandExecutor(parkingLotService));
     commands.put(ParkCommandExecutor.COMMAND_NAME, new ParkCommandExecutor(parkingLotService));
     commands.put(LeaveCommandExecutor.COMMAND_NAME, new LeaveCommandExecutor(parkingLotService));
+    commands.put(StatusCommandExecutor.COMMAND_NAME, new StatusCommandExecutor(parkingLotService));
   }
 
   public CommandExecutor getCommandExecutor(final Command command) {
-    CommandExecutor commandExecutor = commands.get(command.getCommandName());
+    final CommandExecutor commandExecutor = commands.get(command.getCommandName());
     if (commandExecutor == null) {
       throw new InvalidCommandException();
     }

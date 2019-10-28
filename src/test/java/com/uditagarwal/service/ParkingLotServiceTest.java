@@ -1,5 +1,6 @@
 package com.uditagarwal.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -7,8 +8,12 @@ import static org.mockito.Mockito.when;
 import com.uditagarwal.exception.ParkingLotException;
 import com.uditagarwal.model.Car;
 import com.uditagarwal.model.ParkingLot;
+import com.uditagarwal.model.Slot;
 import com.uditagarwal.model.parking.strategy.NaturalOrderingParkingStrategy;
 import com.uditagarwal.model.parking.strategy.ParkingStrategy;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -66,5 +71,29 @@ public class ParkingLotServiceTest {
   public void testFreeingSlotWithoutCreatingParkingLot() {
     final ParkingLotService parkingLotService = new ParkingLotService();
     parkingLotService.makeSlotFree(1);
+  }
+
+  @Test
+  public void testOccupiedSlots() {
+    final Map<Integer, Slot> allSlots = new HashMap<>();
+    final Slot slot1 = new Slot(1);
+    final Slot slot2 = new Slot(1);
+    slot2.assignCar(new Car("test-car-no1", "white"));
+    final Slot slot3 = new Slot(1);
+    final Slot slot4 = new Slot(1);
+    slot4.assignCar(new Car("test-car-no2", "white"));
+
+    allSlots.put(1, slot1);
+    allSlots.put(2, slot2);
+    allSlots.put(3, slot3);
+    allSlots.put(4, slot4);
+
+    when(parkingLot.getSlots()).thenReturn(allSlots);
+    when(parkingLot.getCapacity()).thenReturn(10);
+
+    final List<Slot> occupiedSlots = parkingLotService.getOccupiedSlots();
+    assertEquals(2, occupiedSlots.size());
+    assertEquals(slot2, occupiedSlots.get(0));
+    assertEquals(slot4, occupiedSlots.get(1));
   }
 }
