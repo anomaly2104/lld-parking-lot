@@ -33,7 +33,6 @@ public class Main {
       OutputPrinter outputPrinter, CommandExecutorFactory commandExecutorFactory)
       throws IOException {
     outputPrinter.welcome();
-    outputPrinter.usage();
     while (true) {
       final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
       final String input = reader.readLine();

@@ -1,12 +1,6 @@
 package com.uditagarwal;
 
-import java.sql.SQLOutput;
-
 public class OutputPrinter {
-
-  public void usage() {
-    //TODO: Print usage.
-  }
 
   public void welcome() {
     printWithNewLine("Welcome to Go-Jek Parking lot.");
