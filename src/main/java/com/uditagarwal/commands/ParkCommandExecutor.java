@@ -23,7 +23,7 @@ public class ParkCommandExecutor extends CommandExecutor {
   public void execute(final Command command) {
     final Car car = new Car(command.getParams().get(0), command.getParams().get(1));
     try {
-      Integer slot = parkingLotService.park(car);
+      final Integer slot = parkingLotService.park(car);
       outputPrinter.printWithNewLine("Allocated slot number: " + slot);
     } catch (NoFreeSlotAvailableException exception) {
       outputPrinter.parkingLotFull();

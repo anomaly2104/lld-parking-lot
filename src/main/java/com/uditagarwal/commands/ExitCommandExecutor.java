@@ -7,7 +7,8 @@ import com.uditagarwal.service.ParkingLotService;
 public class ExitCommandExecutor extends CommandExecutor {
   public static String COMMAND_NAME = "exit";
 
-  public ExitCommandExecutor(ParkingLotService parkingLotService, OutputPrinter outputPrinter) {
+  public ExitCommandExecutor(
+      final ParkingLotService parkingLotService, final OutputPrinter outputPrinter) {
     super(parkingLotService, outputPrinter);
   }
 

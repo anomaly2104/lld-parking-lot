@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-  public static void main(String[] args) throws IOException {
+  public static void main(final String[] args) throws IOException {
     final OutputPrinter outputPrinter = new OutputPrinter();
     final ParkingLotService parkingLotService = new ParkingLotService();
     final CommandExecutorFactory commandExecutorFactory =
@@ -30,7 +30,7 @@ public class Main {
   }
 
   private static void runInteractiveMode(
-      OutputPrinter outputPrinter, CommandExecutorFactory commandExecutorFactory)
+      final OutputPrinter outputPrinter, final CommandExecutorFactory commandExecutorFactory)
       throws IOException {
     outputPrinter.welcome();
     while (true) {
@@ -45,7 +45,9 @@ public class Main {
   }
 
   private static void runInputFileMode(
-      String fileName, OutputPrinter outputPrinter, CommandExecutorFactory commandExecutorFactory)
+      final String fileName,
+      final OutputPrinter outputPrinter,
+      final CommandExecutorFactory commandExecutorFactory)
       throws IOException {
     final File file = new File(fileName);
     final BufferedReader reader;
@@ -73,11 +75,11 @@ public class Main {
     }
   }
 
-  private static boolean isFileInputMode(String[] args) {
+  private static boolean isFileInputMode(final String[] args) {
     return args.length == 1;
   }
 
-  private static boolean isInteractiveMode(String[] args) {
+  private static boolean isInteractiveMode(final String[] args) {
     return args.length == 0;
   }
 }

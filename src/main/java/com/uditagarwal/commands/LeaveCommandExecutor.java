@@ -15,7 +15,7 @@ public class LeaveCommandExecutor extends CommandExecutor {
   }
 
   @Override
-  public boolean validate(Command command) {
+  public boolean validate(final Command command) {
     final List<String> params = command.getParams();
     if (params.size() != 1) {
       return false;
@@ -24,7 +24,7 @@ public class LeaveCommandExecutor extends CommandExecutor {
   }
 
   @Override
-  public void execute(Command command) {
+  public void execute(final Command command) {
     final int slotNum = Integer.parseInt(command.getParams().get(0));
     parkingLotService.makeSlotFree(slotNum);
     outputPrinter.printWithNewLine("Slot number " + slotNum + " is free");

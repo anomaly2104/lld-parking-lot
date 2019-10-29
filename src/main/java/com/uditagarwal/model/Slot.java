@@ -4,7 +4,7 @@ public class Slot {
   private Car parkedCar;
   private Integer slotNumber;
 
-  public Slot(Integer slotNumber) {
+  public Slot(final Integer slotNumber) {
     this.slotNumber = slotNumber;
   }
 

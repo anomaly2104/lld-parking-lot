@@ -11,8 +11,8 @@ public class SlotForRegNumberCommandExecutor extends CommandExecutor {
   public static String COMMAND_NAME = "slot_number_for_registration_number";
 
   public SlotForRegNumberCommandExecutor(
-      ParkingLotService parkingLotService,
-      OutputPrinter outputPrinter) {
+      final ParkingLotService parkingLotService,
+      final OutputPrinter outputPrinter) {
     super(parkingLotService, outputPrinter);
   }
 

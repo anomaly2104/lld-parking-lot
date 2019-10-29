@@ -15,7 +15,7 @@ public class ParkingLot {
     return capacity;
   }
 
-  public ParkingLot(int capacity) {
+  public ParkingLot(final int capacity) {
     if (capacity > MAX_CAPACITY || capacity <= 0) {
       throw new ParkingLotException("Invalid capacity given for parking lot.");
     }
@@ -27,7 +27,7 @@ public class ParkingLot {
     return slots;
   }
 
-  private Slot getSlot(Integer slotNumber) {
+  private Slot getSlot(final Integer slotNumber) {
     if (slotNumber > getCapacity() || slotNumber <= 0) {
       throw new InvalidSlotException();
     }
