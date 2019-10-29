@@ -45,9 +45,8 @@ public class Main {
   }
 
   private static void runInputFileMode(
-      String arg, OutputPrinter outputPrinter, CommandExecutorFactory commandExecutorFactory)
+      String fileName, OutputPrinter outputPrinter, CommandExecutorFactory commandExecutorFactory)
       throws IOException {
-    final String fileName = arg;
     final File file = new File(fileName);
     final BufferedReader reader;
     try {
