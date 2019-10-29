@@ -13,5 +13,5 @@ if [ -z "$1" ] ; then
 
 else
   inputFile=$1
-	java -jar JAR_RELATIVE_PATH $inputFile
+	java -jar $JAR_RELATIVE_PATH $inputFile
 fi
