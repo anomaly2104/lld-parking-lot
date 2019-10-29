@@ -41,6 +41,7 @@ public class ParkingLotService {
 
   /** Gets the list of all the slots which are occupied. */
   public List<Slot> getOccupiedSlots() {
+    validateParkingLotExists();
     final List<Slot> occupiedSlotsList = new ArrayList<>();
     final Map<Integer, Slot> allSlots = parkingLot.getSlots();
 
