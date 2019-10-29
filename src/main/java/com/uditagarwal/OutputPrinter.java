@@ -15,8 +15,17 @@ public class OutputPrinter {
   public void notFound() {
     printWithNewLine("Not found");
   }
+
+  public void statusHeader() {
+    printWithNewLine("Slot No.\tRegistration No.\tColor");
+  }
+
+  public void parkingLotEmpty() {
+    printWithNewLine("Parking lot is empty");
+  }
+
   public static void invalidFile() {
-    printLine("Invalid file given.");
+    printLine("Invalid   file given.");
   }
 
   public static void welcome() {

@@ -28,6 +28,12 @@ public class CommandExecutorFactory {
     commands.put(
         ColorToRegNumberCommandExecutor.COMMAND_NAME,
         new ColorToRegNumberCommandExecutor(parkingLotService, outputPrinter));
+    commands.put(
+        ColorToSlotNumberCommandExecutor.COMMAND_NAME,
+        new ColorToSlotNumberCommandExecutor(parkingLotService, outputPrinter));
+    commands.put(
+        SlotForRegNumberCommandExecutor.COMMAND_NAME,
+        new SlotForRegNumberCommandExecutor(parkingLotService, outputPrinter));
   }
 
   public CommandExecutor getCommandExecutor(final Command command) {
