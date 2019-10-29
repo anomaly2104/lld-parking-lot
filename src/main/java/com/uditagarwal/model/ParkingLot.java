@@ -6,6 +6,9 @@ import com.uditagarwal.exception.SlotAlreadyOccupiedException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Model object to represent the functioning of a parking lot.
+ */
 public class ParkingLot {
   private static int MAX_CAPACITY = 100000;
   private int capacity;
@@ -27,6 +30,13 @@ public class ParkingLot {
     return slots;
   }
 
+  /**
+   * Helper method to get a {@link Slot} object for a given slot number. If slot does not exists,
+   * then new slot will be created before giving it back.
+   *
+   * @param slotNumber Slot number.
+   * @return Slot.
+   */
   private Slot getSlot(final Integer slotNumber) {
     if (slotNumber > getCapacity() || slotNumber <= 0) {
       throw new InvalidSlotException();
@@ -38,6 +48,14 @@ public class ParkingLot {
     return allSlots.get(slotNumber);
   }
 
+  /**
+   * Parks a car into a given slot number.
+   *
+   * @param car Car to be parked.
+   * @param slotNumber Slot number in which it has to be parked.
+   * @return {@link Slot} if the parking succeeds. If the slot is already occupied then {@link
+   *     SlotAlreadyOccupiedException} is thrown.
+   */
   public Slot park(final Car car, final Integer slotNumber) {
     final Slot slot = getSlot(slotNumber);
     if (!slot.isSlotFree()) {
@@ -47,6 +65,12 @@ public class ParkingLot {
     return slot;
   }
 
+  /**
+   * Makes the slot free from the current parked car.
+   *
+   * @param slotNumber Slot number to be freed.
+   * @return Freed slot.
+   */
   public Slot makeSlotFree(final Integer slotNumber) {
     final Slot slot = getSlot(slotNumber);
     slot.unassignCar();

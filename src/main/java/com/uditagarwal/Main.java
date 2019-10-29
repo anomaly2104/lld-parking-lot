@@ -23,10 +23,22 @@ public class Main {
     }
   }
 
+  /**
+   * Checks whether the program is running using file input mode.
+   *
+   * @param args Command line arguments.
+   * @return Boolean indicating whether in file input mode.
+   */
   private static boolean isFileInputMode(final String[] args) {
     return args.length == 1;
   }
 
+  /**
+   * Checks whether the program is running using interactive shell mode.
+   *
+   * @param args Command line arguments.
+   * @return Boolean indicating whether in interactive shell mode.
+   */
   private static boolean isInteractiveMode(final String[] args) {
     return args.length == 0;
   }

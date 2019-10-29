@@ -7,6 +7,10 @@ import com.uditagarwal.model.Slot;
 import com.uditagarwal.service.ParkingLotService;
 import java.util.List;
 
+/**
+ * Executor to handle command of fetching the current status of the parking lot. It gives which
+ * slot has which car. Car details will have both its registration number and its color.
+ */
 public class StatusCommandExecutor extends CommandExecutor {
   public static String COMMAND_NAME = "status";
 
@@ -15,11 +19,17 @@ public class StatusCommandExecutor extends CommandExecutor {
     super(parkingLotService, outputPrinter);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public boolean validate(final Command command) {
     return command.getParams().isEmpty();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void execute(Command command) {
     final List<Slot> occupiedSlots = parkingLotService.getOccupiedSlots();

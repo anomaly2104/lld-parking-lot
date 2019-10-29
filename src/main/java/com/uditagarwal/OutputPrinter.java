@@ -1,5 +1,10 @@
 package com.uditagarwal;
 
+/**
+ * Printer to help in printing the output back to the user. Output medium can be changed here
+ * anytime without affecting any of the other code. Currently, System.out is used. Tomorrow if file
+ * has to be used to output, it can be changed here easily.
+ */
 public class OutputPrinter {
 
   public void welcome() {

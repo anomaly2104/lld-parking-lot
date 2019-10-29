@@ -1,5 +1,8 @@
 package com.uditagarwal.model;
 
+/**
+ * Model object to represent a car.
+ */
 public class Car {
   private String registrationNumber;
   private String color;

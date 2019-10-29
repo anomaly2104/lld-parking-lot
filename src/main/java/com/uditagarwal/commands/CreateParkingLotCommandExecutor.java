@@ -8,6 +8,9 @@ import com.uditagarwal.service.ParkingLotService;
 import com.uditagarwal.validator.IntegerValidator;
 import java.util.List;
 
+/**
+ * Executor to handle command of creating the initial parking lot.
+ */
 public class CreateParkingLotCommandExecutor extends CommandExecutor {
   public static String COMMAND_NAME = "create_parking_lot";
 
@@ -16,6 +19,9 @@ public class CreateParkingLotCommandExecutor extends CommandExecutor {
     super(parkingLotService, outputPrinter);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public boolean validate(final Command command) {
     final List<String> params = command.getParams();
@@ -25,6 +31,9 @@ public class CreateParkingLotCommandExecutor extends CommandExecutor {
     return IntegerValidator.isInteger(params.get(0));
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void execute(final Command command) {
     final int parkingLotCapacity = Integer.parseInt(command.getParams().get(0));

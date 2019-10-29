@@ -7,6 +7,9 @@ import com.uditagarwal.service.ParkingLotService;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Executor to handle command of fetching slot number of a car with a given registration number.
+ */
 public class SlotForRegNumberCommandExecutor extends CommandExecutor {
   public static String COMMAND_NAME = "slot_number_for_registration_number";
 
@@ -16,11 +19,17 @@ public class SlotForRegNumberCommandExecutor extends CommandExecutor {
     super(parkingLotService, outputPrinter);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public boolean validate(final Command command) {
     return command.getParams().size() == 1;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void execute(final Command command) {
     final List<Slot> occupiedSlots = parkingLotService.getOccupiedSlots();

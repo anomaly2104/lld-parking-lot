@@ -5,9 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Model object to represent a input command.
+ */
 public class Command {
 
-  public static final String SPACE = " ";
+  private static final String SPACE = " ";
   private String commandName;
   private List<String> params;
 
@@ -19,6 +22,12 @@ public class Command {
     return params;
   }
 
+  /**
+   * Constructor. It takes the input line and parses the command name and param out of it. If the
+   * command or its given params are not valid, then {@link InvalidCommandException} is thrown.
+   *
+   * @param inputLine Given input command line.
+   */
   public Command(final String inputLine) {
     final List<String> tokensList = Arrays.stream(inputLine.trim().split(SPACE))
         .map(String::trim)

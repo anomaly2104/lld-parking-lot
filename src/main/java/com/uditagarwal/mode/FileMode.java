@@ -9,6 +9,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Mode running in which input commands are given from a file.
+ */
 public class FileMode extends Mode {
   private String fileName;
 
@@ -20,6 +23,9 @@ public class FileMode extends Mode {
     this.fileName = fileName;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void process() throws IOException {
     final File file = new File(fileName);
