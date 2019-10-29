@@ -17,19 +17,19 @@ public class Main {
   private static String EXIT = "exit";
 
   public static void main(String[] args) throws IOException {
-    OutputPrinter.welcome();
+    final OutputPrinter outputPrinter = new OutputPrinter();
     final ParkingLotService parkingLotService = new ParkingLotService();
     final CommandExecutorFactory commandExecutorFactory =
         new CommandExecutorFactory(parkingLotService);
-
     if (isInteractiveMode(args)) {
-      OutputPrinter.usage();
+      outputPrinter.welcome();
+      outputPrinter.usage();
       while (true) {
         final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         final String input = reader.readLine();
         final Command command = new Command(input);
         if (command.getCommandName().equals(EXIT)) {
-          OutputPrinter.endInteractive();
+          outputPrinter.endInteractive();
           break;
         }
         processCommand(commandExecutorFactory, command);
@@ -42,7 +42,7 @@ public class Main {
       try {
         reader = new BufferedReader(new FileReader(file));
       } catch (FileNotFoundException e) {
-        OutputPrinter.invalidFile();
+        outputPrinter.invalidFile();
         return;
       }
 
