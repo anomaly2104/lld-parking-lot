@@ -42,5 +42,6 @@ public class LeaveCommandExecutorTest {
   public void testLeavingCarFromSlotMakesSlotFreeFromParkingService() {
     leaveCommandExecutor.execute(new Command("leave 1"));
     verify(parkingLotService).makeSlotFree(1);
+    verify(outputPrinter).printWithNewLine("Slot number 1 is free");
   }
 }
