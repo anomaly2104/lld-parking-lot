@@ -1,18 +1,11 @@
 package com.uditagarwal;
 
-import com.uditagarwal.commands.CommandExecutor;
 import com.uditagarwal.commands.CommandExecutorFactory;
-import com.uditagarwal.commands.ExitCommandExecutor;
-import com.uditagarwal.exception.InvalidCommandException;
 import com.uditagarwal.exception.InvalidModeException;
-import com.uditagarwal.model.Command;
+import com.uditagarwal.mode.FileMode;
+import com.uditagarwal.mode.InteractiveMode;
 import com.uditagarwal.service.ParkingLotService;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class Main {
   public static void main(final String[] args) throws IOException {
@@ -20,58 +13,13 @@ public class Main {
     final ParkingLotService parkingLotService = new ParkingLotService();
     final CommandExecutorFactory commandExecutorFactory =
         new CommandExecutorFactory(parkingLotService);
+
     if (isInteractiveMode(args)) {
-      runInteractiveMode(outputPrinter, commandExecutorFactory);
+      new InteractiveMode(commandExecutorFactory, outputPrinter).process();
     } else if (isFileInputMode(args)) {
-      runInputFileMode(args[0], outputPrinter, commandExecutorFactory);
+      new FileMode(commandExecutorFactory, outputPrinter, args[0]).process();
     } else {
       throw new InvalidModeException();
-    }
-  }
-
-  private static void runInteractiveMode(
-      final OutputPrinter outputPrinter, final CommandExecutorFactory commandExecutorFactory)
-      throws IOException {
-    outputPrinter.welcome();
-    while (true) {
-      final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-      final String input = reader.readLine();
-      final Command command = new Command(input);
-      processCommand(commandExecutorFactory, command);
-      if (command.getCommandName().equals(ExitCommandExecutor.COMMAND_NAME)) {
-        break;
-      }
-    }
-  }
-
-  private static void runInputFileMode(
-      final String fileName,
-      final OutputPrinter outputPrinter,
-      final CommandExecutorFactory commandExecutorFactory)
-      throws IOException {
-    final File file = new File(fileName);
-    final BufferedReader reader;
-    try {
-      reader = new BufferedReader(new FileReader(file));
-    } catch (FileNotFoundException e) {
-      outputPrinter.invalidFile();
-      return;
-    }
-
-    String input = reader.readLine();
-    while (input != null) {
-      final Command command = new Command(input);
-      processCommand(commandExecutorFactory, command);
-    }
-  }
-
-  private static void processCommand(
-      CommandExecutorFactory commandExecutorFactory, Command command) {
-    final CommandExecutor commandExecutor = commandExecutorFactory.getCommandExecutor(command);
-    if (commandExecutor.validate(command)) {
-      commandExecutor.execute(command);
-    } else {
-      throw new InvalidCommandException();
     }
   }
 
