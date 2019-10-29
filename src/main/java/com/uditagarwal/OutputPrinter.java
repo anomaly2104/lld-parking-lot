@@ -12,6 +12,9 @@ public class OutputPrinter {
     //TODO: Print end of interactive mode.
   }
 
+  public void notFound() {
+    printWithNewLine("Not found");
+  }
   public static void invalidFile() {
     printLine("Invalid file given.");
   }

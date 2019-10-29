@@ -52,7 +52,7 @@ public class ColorToSlotNumberCommandExecutorTest {
     colorToSlotNumberCommandExecutor.execute(
         new Command("slot_numbers_for_cars_with_colour white"));
 
-    verify(outputPrinter).printWithNewLine("Not found");
+    verify(outputPrinter).notFound();
   }
 
   @Test

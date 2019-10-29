@@ -52,7 +52,7 @@ public class ColorToRegNumberCommandExecutorTest {
     colorToRegNumberCommandExecutor.execute(
         new Command("registration_numbers_for_cars_with_colour white"));
 
-    verify(outputPrinter).printWithNewLine("Not found");
+    verify(outputPrinter).notFound();
   }
 
   @Test

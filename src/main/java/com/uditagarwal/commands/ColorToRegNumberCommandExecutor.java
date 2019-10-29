@@ -24,7 +24,7 @@ public class ColorToRegNumberCommandExecutor extends CommandExecutor {
   public void execute(final Command command) {
     final List<Slot> slotsForColor = parkingLotService.getSlotsForColor(command.getParams().get(0));
     if (slotsForColor.isEmpty()) {
-      outputPrinter.printWithNewLine("Not found");
+      outputPrinter.notFound();
     } else {
       final String result =
           slotsForColor.stream()
