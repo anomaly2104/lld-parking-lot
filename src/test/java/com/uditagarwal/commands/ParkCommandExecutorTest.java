@@ -3,10 +3,13 @@ package com.uditagarwal.commands;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.uditagarwal.OutputPrinter;
+import com.uditagarwal.exception.NoFreeSlotAvailableException;
 import com.uditagarwal.model.Car;
 import com.uditagarwal.model.Command;
 import com.uditagarwal.service.ParkingLotService;
@@ -39,12 +42,28 @@ public class ParkCommandExecutorTest {
   }
 
   @Test
-  public void testCommandExecution() {
+  public void testCommandExecutionWhenParkingSucceeds() {
+    when(parkingLotService.park(any())).thenReturn(1);
     parkCommandExecutor.execute(new Command("park test-car-number white"));
 
     final ArgumentCaptor<Car> argument = ArgumentCaptor.forClass(Car.class);
     verify(parkingLotService).park(argument.capture());
     assertEquals("test-car-number", argument.getValue().getRegistrationNumber());
     assertEquals("white", argument.getValue().getColor());
+
+    verify(outputPrinter).printWithNewLine("Allocated slot number: 1");
+  }
+
+  @Test
+  public void testCommandExecutionWhenParkingIsFull() {
+    when(parkingLotService.park(any())).thenThrow(new NoFreeSlotAvailableException());
+    parkCommandExecutor.execute(new Command("park test-car-number white"));
+
+    final ArgumentCaptor<Car> argument = ArgumentCaptor.forClass(Car.class);
+    verify(parkingLotService).park(argument.capture());
+    assertEquals("test-car-number", argument.getValue().getRegistrationNumber());
+    assertEquals("white", argument.getValue().getColor());
+
+    verify(outputPrinter).parkingLotFull();
   }
 }

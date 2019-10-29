@@ -20,6 +20,10 @@ public class OutputPrinter {
     printWithNewLine("Slot No.\tRegistration No.\tColor");
   }
 
+  public void parkingLotFull() {
+    printWithNewLine("Sorry, parking lot is full");
+  }
+
   public void parkingLotEmpty() {
     printWithNewLine("Parking lot is empty");
   }
