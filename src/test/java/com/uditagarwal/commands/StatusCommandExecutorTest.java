@@ -5,7 +5,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.sun.tools.internal.ws.wsdl.document.Output;
 import com.uditagarwal.OutputPrinter;
 import com.uditagarwal.model.Car;
 import com.uditagarwal.model.Command;
