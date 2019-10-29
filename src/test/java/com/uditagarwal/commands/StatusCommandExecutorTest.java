@@ -63,7 +63,7 @@ public class StatusCommandExecutorTest {
 
     verify(parkingLotService).getOccupiedSlots();
     verify(outputPrinter).statusHeader();
-    verify(outputPrinter).printWithNewLine("1\t\treg-1\t\twhite");
-    verify(outputPrinter).printWithNewLine("2\t\treg-2\t\tblue");
+    verify(outputPrinter).printWithNewLine("1           reg-1              white");
+    verify(outputPrinter).printWithNewLine("2           reg-2              blue");
   }
 }

@@ -42,9 +42,18 @@ public class StatusCommandExecutor extends CommandExecutor {
     outputPrinter.statusHeader();
     for (Slot slot : occupiedSlots) {
       final Car parkedCar = slot.getParkedCar();
-      outputPrinter.printWithNewLine(slot.getSlotNumber()
-          + "\t\t" + parkedCar.getRegistrationNumber()
-          + "\t\t" + parkedCar.getColor());
+      final String slotNumber = slot.getSlotNumber().toString();
+
+      outputPrinter.printWithNewLine(padString(slotNumber, 12)
+          + padString(parkedCar.getRegistrationNumber(), 19) + parkedCar.getColor());
     }
+  }
+
+  private static String padString(final String word, final int length) {
+    String newWord = word;
+    for(int count = word.length(); count < length; count++) {
+      newWord = newWord + " ";
+    }
+    return newWord;
   }
 }

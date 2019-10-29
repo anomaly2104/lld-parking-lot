@@ -20,7 +20,7 @@ public class OutputPrinter {
   }
 
   public void statusHeader() {
-    printWithNewLine("Slot No.\tRegistration No.\tColor");
+    printWithNewLine("Slot No.    Registration No    Colour");
   }
 
   public void parkingLotFull() {
