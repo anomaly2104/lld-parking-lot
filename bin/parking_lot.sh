@@ -5,7 +5,6 @@ cd "${SCRIPT_DIR}"
 cd ..
 
 JAR_RELATIVE_PATH=target/parking-lot-1.0-SNAPSHOT.jar
-mvn clean install
 
 if [ -z "$1" ] ; then
         java -jar $JAR_RELATIVE_PATH
