@@ -12,7 +12,7 @@ public class OutputPrinter {
     printWithNewLine("Welcome to Go-Jek Parking lot.");
   }
 
-  public void endInteractive() {
+  public void end() {
     printWithNewLine("Thanks for using Go-Jek Parking lot service.");
   }
 
