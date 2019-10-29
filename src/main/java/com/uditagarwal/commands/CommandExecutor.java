@@ -1,5 +1,6 @@
 package com.uditagarwal.commands;
 
+import com.uditagarwal.OutputPrinter;
 import com.uditagarwal.model.Command;
 import com.uditagarwal.service.ParkingLotService;
 
@@ -8,9 +9,12 @@ import com.uditagarwal.service.ParkingLotService;
  */
 public abstract class CommandExecutor {
   protected ParkingLotService parkingLotService;
+  protected OutputPrinter outputPrinter;
 
-  public CommandExecutor(ParkingLotService parkingLotService) {
+  public CommandExecutor(final ParkingLotService parkingLotService,
+      final OutputPrinter outputPrinter) {
     this.parkingLotService = parkingLotService;
+    this.outputPrinter = outputPrinter;
   }
 
   /**

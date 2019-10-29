@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import com.sun.tools.internal.ws.wsdl.document.Output;
+import com.uditagarwal.OutputPrinter;
 import com.uditagarwal.model.Command;
 import com.uditagarwal.service.ParkingLotService;
 import org.junit.Before;
@@ -13,12 +15,14 @@ import org.junit.Test;
 public class LeaveCommandExecutorTest {
 
   private ParkingLotService parkingLotService;
+  private OutputPrinter outputPrinter;
   private LeaveCommandExecutor leaveCommandExecutor;
 
   @Before
   public void setUp() throws Exception {
     parkingLotService = mock(ParkingLotService.class);
-    leaveCommandExecutor = new LeaveCommandExecutor(parkingLotService);
+    outputPrinter = mock(OutputPrinter.class);
+    leaveCommandExecutor = new LeaveCommandExecutor(parkingLotService, outputPrinter);
   }
 
   @Test

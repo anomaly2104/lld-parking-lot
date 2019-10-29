@@ -1,5 +1,6 @@
 package com.uditagarwal.commands;
 
+import com.uditagarwal.OutputPrinter;
 import com.uditagarwal.model.Command;
 import com.uditagarwal.model.ParkingLot;
 import com.uditagarwal.model.parking.strategy.NaturalOrderingParkingStrategy;
@@ -10,8 +11,9 @@ import java.util.List;
 public class CreateParkingLotCommandExecutor extends CommandExecutor {
   public static String COMMAND_NAME = "create_parking_lot";
 
-  public CreateParkingLotCommandExecutor(final ParkingLotService parkingLotService) {
-    super(parkingLotService);
+  public CreateParkingLotCommandExecutor(final ParkingLotService parkingLotService,
+      final OutputPrinter outputPrinter) {
+    super(parkingLotService, outputPrinter);
   }
 
   @Override

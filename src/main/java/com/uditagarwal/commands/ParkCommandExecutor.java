@@ -1,5 +1,6 @@
 package com.uditagarwal.commands;
 
+import com.uditagarwal.OutputPrinter;
 import com.uditagarwal.model.Car;
 import com.uditagarwal.model.Command;
 import com.uditagarwal.service.ParkingLotService;
@@ -7,8 +8,9 @@ import com.uditagarwal.service.ParkingLotService;
 public class ParkCommandExecutor extends CommandExecutor {
   public static String COMMAND_NAME = "park";
 
-  public ParkCommandExecutor(ParkingLotService parkingLotService) {
-    super(parkingLotService);
+  public ParkCommandExecutor(final ParkingLotService parkingLotService,
+      final OutputPrinter outputPrinter) {
+    super(parkingLotService, outputPrinter);
   }
 
   @Override
@@ -18,7 +20,7 @@ public class ParkCommandExecutor extends CommandExecutor {
 
   @Override
   public void execute(final Command command) {
-    Car car = new Car(command.getParams().get(0), command.getParams().get(1));
+    final Car car = new Car(command.getParams().get(0), command.getParams().get(1));
     parkingLotService.park(car);
   }
 }

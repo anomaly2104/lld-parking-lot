@@ -1,5 +1,6 @@
 package com.uditagarwal.commands;
 
+import com.uditagarwal.OutputPrinter;
 import com.uditagarwal.model.Car;
 import com.uditagarwal.model.Command;
 import com.uditagarwal.model.Slot;
@@ -9,8 +10,9 @@ import java.util.List;
 public class StatusCommandExecutor extends CommandExecutor {
   public static String COMMAND_NAME = "status";
 
-  public StatusCommandExecutor(final ParkingLotService parkingLotService) {
-    super(parkingLotService);
+  public StatusCommandExecutor(final ParkingLotService parkingLotService,
+      final OutputPrinter outputPrinter) {
+    super(parkingLotService, outputPrinter);
   }
 
   @Override

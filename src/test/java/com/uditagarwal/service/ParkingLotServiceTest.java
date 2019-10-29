@@ -96,4 +96,49 @@ public class ParkingLotServiceTest {
     assertEquals(slot2, occupiedSlots.get(0));
     assertEquals(slot4, occupiedSlots.get(1));
   }
+
+  @Test
+  public void testGetCarsForAParticularColor() {
+    final Map<Integer, Slot> allSlots = new HashMap<>();
+    final Slot slot1 = new Slot(1);
+    slot1.assignCar(new Car("test-car-no1", "blue"));
+    final Slot slot2 = new Slot(1);
+    slot2.assignCar(new Car("test-car-no2", "white"));
+    final Slot slot3 = new Slot(1);
+    final Slot slot4 = new Slot(1);
+    slot4.assignCar(new Car("test-car-no3", "white"));
+
+    allSlots.put(1, slot1);
+    allSlots.put(2, slot2);
+    allSlots.put(3, slot3);
+    allSlots.put(4, slot4);
+
+    when(parkingLot.getSlots()).thenReturn(allSlots);
+    when(parkingLot.getCapacity()).thenReturn(10);
+
+    final List<Car> cars = parkingLotService.getCarsForColor("white");
+    assertEquals(2, cars.size());
+    assertEquals("test-car-no2", cars.get(0).getRegistrationNumber());
+    assertEquals("test-car-no3", cars.get(1).getRegistrationNumber());
+  }
+
+  @Test
+  public void testGetCarsForAParticularColorWhenNoCarMatches() {
+    final Map<Integer, Slot> allSlots = new HashMap<>();
+    final Slot slot1 = new Slot(1);
+    slot1.assignCar(new Car("test-car-no1", "blue"));
+    final Slot slot2 = new Slot(1);
+    final Slot slot3 = new Slot(1);
+    slot3.assignCar(new Car("test-car-no2", "red"));
+
+    allSlots.put(1, slot1);
+    allSlots.put(2, slot2);
+    allSlots.put(3, slot3);
+
+    when(parkingLot.getSlots()).thenReturn(allSlots);
+    when(parkingLot.getCapacity()).thenReturn(10);
+
+    final List<Car> cars = parkingLotService.getCarsForColor("white");
+    assertEquals(0, cars.size());
+  }
 }

@@ -5,6 +5,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.sun.tools.internal.ws.wsdl.document.Output;
+import com.uditagarwal.OutputPrinter;
 import com.uditagarwal.model.Command;
 import com.uditagarwal.model.Slot;
 import com.uditagarwal.service.ParkingLotService;
@@ -15,12 +17,14 @@ import org.junit.Test;
 
 public class StatusCommandExecutorTest {
   private ParkingLotService parkingLotService;
+  private OutputPrinter outputPrinter;
   private StatusCommandExecutor statusCommandExecutor;
 
   @Before
   public void setUp() throws Exception {
     parkingLotService = mock(ParkingLotService.class);
-    statusCommandExecutor = new StatusCommandExecutor(parkingLotService);
+    outputPrinter = mock(OutputPrinter.class);
+    statusCommandExecutor = new StatusCommandExecutor(parkingLotService, outputPrinter);
   }
 
   @Test

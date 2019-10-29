@@ -1,5 +1,6 @@
 package com.uditagarwal.commands;
 
+import com.uditagarwal.OutputPrinter;
 import com.uditagarwal.exception.InvalidCommandException;
 import com.uditagarwal.model.Command;
 import com.uditagarwal.service.ParkingLotService;
@@ -11,12 +12,22 @@ public class CommandExecutorFactory {
   private Map<String, CommandExecutor> commands = new HashMap<>();
 
   public CommandExecutorFactory(final ParkingLotService parkingLotService) {
+    final OutputPrinter outputPrinter = new OutputPrinter();
     commands.put(
         CreateParkingLotCommandExecutor.COMMAND_NAME,
-        new CreateParkingLotCommandExecutor(parkingLotService));
-    commands.put(ParkCommandExecutor.COMMAND_NAME, new ParkCommandExecutor(parkingLotService));
-    commands.put(LeaveCommandExecutor.COMMAND_NAME, new LeaveCommandExecutor(parkingLotService));
-    commands.put(StatusCommandExecutor.COMMAND_NAME, new StatusCommandExecutor(parkingLotService));
+        new CreateParkingLotCommandExecutor(parkingLotService, outputPrinter));
+    commands.put(
+        ParkCommandExecutor.COMMAND_NAME,
+        new ParkCommandExecutor(parkingLotService, outputPrinter));
+    commands.put(
+        LeaveCommandExecutor.COMMAND_NAME,
+        new LeaveCommandExecutor(parkingLotService, outputPrinter));
+    commands.put(
+        StatusCommandExecutor.COMMAND_NAME,
+        new StatusCommandExecutor(parkingLotService, outputPrinter));
+    commands.put(
+        ColorToRegNumberCommandExecutor.COMMAND_NAME,
+        new ColorToRegNumberCommandExecutor(parkingLotService, outputPrinter));
   }
 
   public CommandExecutor getCommandExecutor(final Command command) {

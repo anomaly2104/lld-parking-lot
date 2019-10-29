@@ -7,6 +7,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import com.uditagarwal.OutputPrinter;
 import com.uditagarwal.model.Command;
 import com.uditagarwal.model.ParkingLot;
 import com.uditagarwal.model.parking.strategy.NaturalOrderingParkingStrategy;
@@ -17,12 +18,15 @@ import org.mockito.ArgumentCaptor;
 
 public class CreateParkingLotCommandExecutorTest {
   private ParkingLotService parkingLotService;
+  private OutputPrinter outputPrinter;
   private CreateParkingLotCommandExecutor createParkingLotCommandExecutor;
 
   @Before
   public void setUp() throws Exception {
     parkingLotService = mock(ParkingLotService.class);
-    createParkingLotCommandExecutor = new CreateParkingLotCommandExecutor(parkingLotService);
+    outputPrinter = mock(OutputPrinter.class);
+    createParkingLotCommandExecutor =
+        new CreateParkingLotCommandExecutor(parkingLotService, outputPrinter);
   }
 
   @Test

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import com.uditagarwal.OutputPrinter;
 import com.uditagarwal.model.Car;
 import com.uditagarwal.model.Command;
 import com.uditagarwal.service.ParkingLotService;
@@ -15,12 +16,14 @@ import org.mockito.ArgumentCaptor;
 
 public class ParkCommandExecutorTest {
   private ParkingLotService parkingLotService;
+  private OutputPrinter outputPrinter;
   private ParkCommandExecutor parkCommandExecutor;
 
   @Before
   public void setUp() throws Exception {
     parkingLotService = mock(ParkingLotService.class);
-    parkCommandExecutor = new ParkCommandExecutor(parkingLotService);
+    outputPrinter = mock(OutputPrinter.class);
+    parkCommandExecutor = new ParkCommandExecutor(parkingLotService, outputPrinter);
   }
 
   @Test

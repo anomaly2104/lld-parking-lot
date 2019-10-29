@@ -1,5 +1,6 @@
 package com.uditagarwal.commands;
 
+import com.uditagarwal.OutputPrinter;
 import com.uditagarwal.model.Command;
 import com.uditagarwal.service.ParkingLotService;
 import com.uditagarwal.validator.IntegerValidator;
@@ -8,8 +9,9 @@ import java.util.List;
 public class LeaveCommandExecutor extends CommandExecutor {
   public static String COMMAND_NAME = "leave";
 
-  public LeaveCommandExecutor(final ParkingLotService parkingLotService) {
-    super(parkingLotService);
+  public LeaveCommandExecutor(final ParkingLotService parkingLotService,
+      final OutputPrinter outputPrinter) {
+    super(parkingLotService, outputPrinter);
   }
 
   @Override

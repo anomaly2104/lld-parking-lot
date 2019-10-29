@@ -8,6 +8,7 @@ import com.uditagarwal.model.parking.strategy.ParkingStrategy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ParkingLotService {
   private ParkingLot parkingLot;
@@ -38,9 +39,7 @@ public class ParkingLotService {
     parkingStrategy.addSlot(slotNumber);
   }
 
-  /**
-   * Gets the list of all the slots which are occupied.
-   */
+  /** Gets the list of all the slots which are occupied. */
   public List<Slot> getOccupiedSlots() {
     final List<Slot> occupiedSlotsList = new ArrayList<>();
     final Map<Integer, Slot> allSlots = parkingLot.getSlots();
@@ -61,5 +60,13 @@ public class ParkingLotService {
     if (parkingLot == null) {
       throw new ParkingLotException("Parking lot does not exists to park.");
     }
+  }
+
+  public List<Car> getCarsForColor(final String color) {
+    final List<Slot> occupiedSlots = getOccupiedSlots();
+    return occupiedSlots.stream()
+        .filter(slot -> slot.getParkedCar().getColor().equals(color))
+        .map(Slot::getParkedCar)
+        .collect(Collectors.toList());
   }
 }
