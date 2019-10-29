@@ -2,6 +2,7 @@ package com.uditagarwal;
 
 import com.uditagarwal.commands.CommandExecutor;
 import com.uditagarwal.commands.CommandExecutorFactory;
+import com.uditagarwal.commands.ExitCommandExecutor;
 import com.uditagarwal.exception.InvalidCommandException;
 import com.uditagarwal.exception.InvalidModeException;
 import com.uditagarwal.model.Command;
@@ -14,8 +15,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-  private static String EXIT = "exit";
-
   public static void main(String[] args) throws IOException {
     final OutputPrinter outputPrinter = new OutputPrinter();
     final ParkingLotService parkingLotService = new ParkingLotService();
@@ -30,24 +29,25 @@ public class Main {
     }
   }
 
-  private static void runInteractiveMode(OutputPrinter outputPrinter,
-      CommandExecutorFactory commandExecutorFactory) throws IOException {
+  private static void runInteractiveMode(
+      OutputPrinter outputPrinter, CommandExecutorFactory commandExecutorFactory)
+      throws IOException {
     outputPrinter.welcome();
     outputPrinter.usage();
     while (true) {
       final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
       final String input = reader.readLine();
       final Command command = new Command(input);
-      if (command.getCommandName().equals(EXIT)) {
-        outputPrinter.end();
+      processCommand(commandExecutorFactory, command);
+      if (command.getCommandName().equals(ExitCommandExecutor.COMMAND_NAME)) {
         break;
       }
-      processCommand(commandExecutorFactory, command);
     }
   }
 
-  private static void runInputFileMode(String arg, OutputPrinter outputPrinter,
-      CommandExecutorFactory commandExecutorFactory) throws IOException {
+  private static void runInputFileMode(
+      String arg, OutputPrinter outputPrinter, CommandExecutorFactory commandExecutorFactory)
+      throws IOException {
     final String fileName = arg;
     final File file = new File(fileName);
     final BufferedReader reader;

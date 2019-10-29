@@ -34,6 +34,9 @@ public class CommandExecutorFactory {
     commands.put(
         SlotForRegNumberCommandExecutor.COMMAND_NAME,
         new SlotForRegNumberCommandExecutor(parkingLotService, outputPrinter));
+    commands.put(
+        ExitCommandExecutor.COMMAND_NAME,
+        new ExitCommandExecutor(parkingLotService, outputPrinter));
   }
 
   public CommandExecutor getCommandExecutor(final Command command) {
