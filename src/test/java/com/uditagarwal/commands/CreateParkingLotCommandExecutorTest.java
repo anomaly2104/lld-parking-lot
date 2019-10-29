@@ -48,5 +48,6 @@ public class CreateParkingLotCommandExecutorTest {
     verify(parkingLotService)
         .createParkingLot(argument.capture(), any(NaturalOrderingParkingStrategy.class));
     assertEquals(6, argument.getValue().getCapacity());
+    verify(outputPrinter).printWithNewLine("Created a parking lot with 6 slots");
   }
 }

@@ -11,8 +11,8 @@ import java.util.List;
 public class CreateParkingLotCommandExecutor extends CommandExecutor {
   public static String COMMAND_NAME = "create_parking_lot";
 
-  public CreateParkingLotCommandExecutor(final ParkingLotService parkingLotService,
-      final OutputPrinter outputPrinter) {
+  public CreateParkingLotCommandExecutor(
+      final ParkingLotService parkingLotService, final OutputPrinter outputPrinter) {
     super(parkingLotService, outputPrinter);
   }
 
@@ -28,6 +28,9 @@ public class CreateParkingLotCommandExecutor extends CommandExecutor {
   @Override
   public void execute(final Command command) {
     final int parkingLotCapacity = Integer.parseInt(command.getParams().get(0));
-    parkingLotService.createParkingLot(new ParkingLot(parkingLotCapacity), new NaturalOrderingParkingStrategy());
+    final ParkingLot parkingLot = new ParkingLot(parkingLotCapacity);
+    parkingLotService.createParkingLot(parkingLot, new NaturalOrderingParkingStrategy());
+    outputPrinter.printWithNewLine(
+        "Created a parking lot with " + parkingLot.getCapacity() + " slots");
   }
 }
