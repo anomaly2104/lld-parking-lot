@@ -24,14 +24,17 @@ public class StatusCommandExecutor extends CommandExecutor {
   public void execute(Command command) {
     final List<Slot> occupiedSlots = parkingLotService.getOccupiedSlots();
 
-    System.out.println("Slot No.\tRegistration No.\tColor");
+    if (occupiedSlots.isEmpty()) {
+      outputPrinter.parkingLotEmpty();
+      return;
+    }
 
+    outputPrinter.statusHeader();
     for (Slot slot : occupiedSlots) {
       final Car parkedCar = slot.getParkedCar();
-      System.out.println(
-          slot.getSlotNumber()
-              + "\t\t" + parkedCar.getRegistrationNumber()
-              + "\t\t" + parkedCar.getColor());
+      outputPrinter.printWithNewLine(slot.getSlotNumber()
+          + "\t\t" + parkedCar.getRegistrationNumber()
+          + "\t\t" + parkedCar.getColor());
     }
   }
 }
