@@ -16,41 +16,41 @@ import java.util.Collections;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ColorToRegNumberCommandExecutorTest {
+public class ColorToSlotNumberCommandExecutorTest {
   private ParkingLotService parkingLotService;
   private OutputPrinter outputPrinter;
-  private ColorToRegNumberCommandExecutor colorToRegNumberCommandExecutor;
+  private ColorToSlotNumberCommandExecutor colorToSlotNumberCommandExecutor;
 
   @Before
   public void setUp() throws Exception {
     parkingLotService = mock(ParkingLotService.class);
     outputPrinter = mock(OutputPrinter.class);
-    colorToRegNumberCommandExecutor =
-        new ColorToRegNumberCommandExecutor(parkingLotService, outputPrinter);
+    colorToSlotNumberCommandExecutor =
+        new ColorToSlotNumberCommandExecutor(parkingLotService, outputPrinter);
   }
 
   @Test
   public void testValidCommand() {
     assertTrue(
-        colorToRegNumberCommandExecutor.validate(
-            new Command("registration_numbers_for_cars_with_colour white")));
+        colorToSlotNumberCommandExecutor.validate(
+            new Command("slot_numbers_for_cars_with_colour white")));
   }
 
   @Test
   public void testInvalidCommand() {
     assertFalse(
-        colorToRegNumberCommandExecutor.validate(
-            new Command("registration_numbers_for_cars_with_colour")));
+        colorToSlotNumberCommandExecutor.validate(
+            new Command("slot_numbers_for_cars_with_colour")));
     assertFalse(
-        colorToRegNumberCommandExecutor.validate(
-            new Command("registration_numbers_for_cars_with_colour a b")));
+        colorToSlotNumberCommandExecutor.validate(
+            new Command("slot_numbers_for_cars_with_colour a b")));
   }
 
   @Test
-  public void testWhenNoCarsFoundWithAColor() {
+  public void testWhenNoSlotsFoundWithAColor() {
     when(parkingLotService.getSlotsForColor("white")).thenReturn(Collections.emptyList());
-    colorToRegNumberCommandExecutor.execute(
-        new Command("registration_numbers_for_cars_with_colour white"));
+    colorToSlotNumberCommandExecutor.execute(
+        new Command("slot_numbers_for_cars_with_colour white"));
 
     verify(outputPrinter).printWithNewLine("Not found");
   }
@@ -61,11 +61,10 @@ public class ColorToRegNumberCommandExecutorTest {
     slot1.assignCar(new Car("num_white1", "white"));
     final Slot slot2 = new Slot(2);
     slot2.assignCar(new Car("num_white2", "white"));
-    when(parkingLotService.getSlotsForColor("white"))
-        .thenReturn(Arrays.asList(slot1, slot2));
-    colorToRegNumberCommandExecutor.execute(
-        new Command("registration_numbers_for_cars_with_colour white"));
+    when(parkingLotService.getSlotsForColor("white")).thenReturn(Arrays.asList(slot1, slot2));
+    colorToSlotNumberCommandExecutor.execute(
+        new Command("slot_numbers_for_cars_with_colour white"));
 
-    verify(outputPrinter).printWithNewLine("num_white1, num_white2");
+    verify(outputPrinter).printWithNewLine("1, 2");
   }
 }

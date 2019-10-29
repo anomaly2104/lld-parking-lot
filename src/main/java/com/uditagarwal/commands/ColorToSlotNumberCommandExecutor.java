@@ -7,10 +7,10 @@ import com.uditagarwal.service.ParkingLotService;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ColorToRegNumberCommandExecutor extends CommandExecutor {
-  public static String COMMAND_NAME = "registration_numbers_for_cars_with_colour";
+public class ColorToSlotNumberCommandExecutor extends CommandExecutor {
+  public static String COMMAND_NAME = "slot_numbers_for_cars_with_colour";
 
-  public ColorToRegNumberCommandExecutor(
+  public ColorToSlotNumberCommandExecutor(
       final ParkingLotService parkingLotService, final OutputPrinter outputPrinter) {
     super(parkingLotService, outputPrinter);
   }
@@ -28,7 +28,7 @@ public class ColorToRegNumberCommandExecutor extends CommandExecutor {
     } else {
       final String result =
           slotsForColor.stream()
-              .map(slot -> slot.getParkedCar().getRegistrationNumber())
+              .map(slot -> slot.getSlotNumber().toString())
               .collect(Collectors.joining(", "));
       outputPrinter.printWithNewLine(result);
     }

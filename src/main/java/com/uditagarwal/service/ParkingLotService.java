@@ -62,11 +62,12 @@ public class ParkingLotService {
     }
   }
 
-  public List<Car> getCarsForColor(final String color) {
+  public List<Slot> getSlotsForColor(final String color) {
     final List<Slot> occupiedSlots = getOccupiedSlots();
     return occupiedSlots.stream()
         .filter(slot -> slot.getParkedCar().getColor().equals(color))
-        .map(Slot::getParkedCar)
         .collect(Collectors.toList());
   }
+
+
 }
