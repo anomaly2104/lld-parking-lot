@@ -15,7 +15,7 @@ the ticket which then marks the slot they were using as being available.
 
 Due to government regulation, the system should provide me with the ability to find out:  
 * Registration numbers of all cars of a particular colour.
-* lot number in which a car with a given registration number is parked.
+* Slot number in which a car with a given registration number is parked.
 * Slot numbers of all slots where a car of a particular colour is parked.
 
 We interact with the system via a simple set of commands which produce a specific
