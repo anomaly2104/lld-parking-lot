@@ -1,4 +1,4 @@
-Parking lot Problem
+## Low Level System Design - Parking lot 
 
 ### Problem Statement
 [Check here](problem-statment.md)
