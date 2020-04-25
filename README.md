@@ -1,4 +1,7 @@
-GOJEK Parking lot Problem
+Parking lot Problem
+
+### Problem Statement
+[Check here](problem-statment.md)
 
 ### Project Requirements
 
