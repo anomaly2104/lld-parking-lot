@@ -24,3 +24,14 @@ The project can be run as follows in one of the two ways:
 2) **Using file based input:**: This will run the program in the interactive shell mode where commands can be typed in.  
   ./bin/parking_lot.sh 
   
+
+### Further Enhancements:
+
+* Dependency injection: Currently dependencies are injected manually. We can use some 
+dependency injection framework like spring. 
+* Exit command: Exit command is currently coupled with interactive mode only which makes
+it non-reusable.
+* Parking strategy: Parking strategy is currently associated with `ParkingLotService`. 
+Instead of that, it makes more sense to associate it with `ParkingLot`.
+* Mode: Mode checking is currently done in main function directly. There could be a
+factory for that.
