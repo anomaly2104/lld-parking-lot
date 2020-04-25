@@ -1,4 +1,5 @@
-##Problem Statement
+## Problem Statement
+
 I own a parking lot that can hold up to 'n' cars at any given point in time. Each slot is
 given a number starting at 1 increasing with increasing distance from the entry point
 in steps of one. I want to create an automated ticketing system that allows my
@@ -28,9 +29,9 @@ don't want two distinct submissions.
 1. It should accept a filename as a parameter at the command prompt and read the
    commands from that file
    
-###Example: File
+### Example: File
 
-####Input (contents of file):
+#### Input (contents of file):
 create_parking_lot 6  
 park KA-01-HH-1234 White  
 park KA-01-HH-9999 White  
@@ -47,7 +48,7 @@ slot_numbers_for_cars_with_colour White
 slot_number_for_registration_number KA-01-HH-3141  
 slot_number_for_registration_number MH-04-AY-1111  
 
-####Input (to STDOUT:
+#### Output (to STDOUT)
 
 Created a parking lot with 6 slots  
 Allocated slot number: 1  
@@ -70,7 +71,7 @@ KA-01-HH-1234, KA-01-HH-9999, KA-01-P-333
 6  
 Not found
 
-###Example: Interactive
+### Example: Interactive
 Assuming a parking lot with 6 slots, the following commands should be run in
 sequence by typing them in at a prompt and should produce output as described
 below the command. Note that `exit` terminates the process and returns control to
