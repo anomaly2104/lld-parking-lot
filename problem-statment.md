@@ -102,14 +102,12 @@ $ leave 4
 Slot number 4 is free  
 
 $ status  
-
-Slot No. | Registration No  | Color
---- | --- | ---
-1 | KA-01-HH-1234 | White  
-2 | KA-01-HH-9999 | White  
-3 | KA-01-BB-0001 | Black  
-5 | KA-01-HH-2701 | Blue  
-6 | KA-01-HH-3141 | Black  
+Slot No. Registration No Colour  
+1 KA-01-HH-1234 White  
+2 KA-01-HH-9999 White  
+3 KA-01-BB-0001 Black  
+5 KA-01-HH-2701 Blue  
+6 KA-01-HH-3141 Black  
 
 $ park KA-01-P-333 White  
 Allocated slot number: 4  
