@@ -33,6 +33,7 @@ public class ParkingLotService {
     this.parkingStrategy = parkingStrategy;
     for (int i = 1; i <= parkingLot.getCapacity(); i++) {
       parkingStrategy.addSlot(i);
+      parkingLot.getSlots().put(i, null);
     }
   }
 
