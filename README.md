@@ -1,6 +1,9 @@
 ## Video explanation: 
 https://youtu.be/7IX84K9g23U
 
+## Connect with me and my offerings:
+https://enginebogie.com/u/anomaly2104
+
 ----
 # Low Level System Design - Parking lot 
 
