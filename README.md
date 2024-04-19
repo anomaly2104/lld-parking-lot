@@ -4,6 +4,12 @@ https://youtu.be/7IX84K9g23U
 ## Connect with me and my offerings:
 https://enginebogie.com/u/anomaly2104
 
+## LLD Cohort:
+https://enginebogie.com/u/anomaly2104/offerings/PATH/e6cce7f1-6a56-4fe3-bb82-48e1876e4596
+
+## Multi-threading Cohort: 
+https://enginebogie.com/u/anomaly2104/offerings/PATH/e9522ac1-4e4c-4217-92ba-f691f34c321b
+
 ----
 # Low Level System Design - Parking lot 
 
